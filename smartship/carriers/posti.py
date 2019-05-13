@@ -144,7 +144,7 @@ class WeightedParcels(Parcels):
 
 def create_shipment(
         custno, service_id, receiver, sender, parcels,
-        agent=None, order_no=None, sender_reference=None, pdf_config=None, addons=None, free_text=None,):
+        agent=None, order_no=None, sender_reference=None, receiver_reference=None, pdf_config=None, addons=None, free_text=None,):
     """
     Create a shipment using the Posti carrier.
 
@@ -187,6 +187,8 @@ def create_shipment(
     :type order_no: str
     :param sender_reference: Sender reference (optional)
     :type sender_reference: str
+    :param sender_reference: Receiver reference (optional)
+    :type sender_reference: str
     :param pdf_config: PDF config (optional)
     :type pdf_config: dict
     :param addons: Service addons. Available addons depend on chosen service (optional). See Unfifaun Online
@@ -223,6 +225,8 @@ def create_shipment(
         kwargs["orderNo"] = order_no
     if sender_reference:
         kwargs["senderReference"] = sender_reference
+    if receiver_reference:
+        kwargs["receiverReference"] = receiver_reference
     if pdf_config:
         kwargs["pdfConfig"] = PDFConfig(pdf_config)
     if free_text:

@@ -28,6 +28,7 @@ class Shipment(object):
     parcels = attr.ib(default=Parcels())
     service = attr.ib(default=Service())
     senderReference = attr.ib(default="")
+    receiverReference = attr.ib(default="")
     freeText1 = attr.ib(default="")
     # TODO: add remaining attributes
 
@@ -56,6 +57,8 @@ class Shipment(object):
             data["shipment"]["orderNo"] = self.orderNo
         if self.senderReference:
             data["shipment"]["senderReference"] = self.senderReference
+        if self.receiverReference:
+            data["shipment"]["receiverReference"] = self.receiverReference
         if self.freeText1:
             data["shipment"]["freeText1"] = self.freeText1
         # TODO: set remaining attributes, if given
